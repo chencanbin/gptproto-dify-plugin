@@ -1,0 +1,28 @@
+identity:
+  author: gptproto
+  name: gptproto_image
+  label:
+    en_US: GPTProto Image Generation
+    zh_Hans: GPTProto 图像生成
+  description:
+    en_US: Generate images using GPTProto Gemini-3-Pro API
+    zh_Hans: 使用 GPTProto Gemini-3-Pro API 生成图像
+  icon: ../_assets/icon.svg
+
+# 用户需要提供的凭证配置
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: API Key
+      zh_Hans: API 密钥
+    placeholder:
+      en_US: Enter your GPTProto API Key (sk-xxxxx)
+      zh_Hans: 请输入您的 GPTProto API Key (sk-xxxxx)
+    help:
+      en_US: Get your API key from GPTProto dashboard
+      zh_Hans: 从 GPTProto 控制台获取您的 API Key
+
+tools:
+  - tools/text_to_image.yaml
