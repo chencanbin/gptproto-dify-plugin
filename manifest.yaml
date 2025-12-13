@@ -31,8 +31,7 @@ meta:
   arch:
     - amd64
     - arm64
-
-runner:
-  language: nodejs
-  version: "18"
-  entrypoint: index.js
+  runner:
+    language: nodejs
+    version: "18"
+    entrypoint: index.js
