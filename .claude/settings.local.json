@@ -23,7 +23,10 @@
       "Bash(git -C ./gptproto-dify-plugin push origin v0.0.11)",
       "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Remove credentials, use hardcoded API key\")",
       "Bash(git -C ./gptproto-dify-plugin tag v0.0.12)",
-      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.12)"
+      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.12)",
+      "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Add dummy credential field for authorization flow\")",
+      "Bash(git -C ./gptproto-dify-plugin tag v0.0.13)",
+      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.13)"
     ],
     "deny": [],
     "ask": []
