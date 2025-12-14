@@ -8,7 +8,6 @@ from dify_plugin import Tool
 
 
 BASE_URL = "https://gptproto.com/api/v3"
-API_KEY = "sk-83a0c6d0768b4909b7c37851159a48fb"
 
 
 class TextToImageTool(Tool):
@@ -33,8 +32,11 @@ class TextToImageTool(Tool):
             yield self.create_text_message("Error: Prompt is required")
             return
 
-        # 使用硬编码的 API Key
-        api_key = API_KEY
+        # 从 Provider credentials 获取 API Key
+        api_key = self.runtime.credentials.get("api_key", "")
+        if not api_key:
+            yield self.create_text_message("Error: API Key is not configured")
+            return
 
         try:
             # 1. 提交任务

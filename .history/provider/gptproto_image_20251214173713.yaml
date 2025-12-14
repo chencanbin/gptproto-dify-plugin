@@ -1,0 +1,27 @@
+identity:
+  author: gptproto
+  name: gptproto_image
+  label:
+    en_US: GPTProto Image Generation
+    zh_Hans: GPTProto 图像生成
+  description:
+    en_US: Generate images using GPTProto Gemini-3-Pro API
+    zh_Hans: 使用 GPTProto Gemini-3-Pro API 生成图像
+  icon: icon.svg
+
+# credentials_for_provider:
+#   name:
+#     type: text-input
+#     required: false
+#     label:
+#       en_US: Name
+#       zh_Hans: 名称
+#     placeholder:
+#       en_US: Enter any name
+#       zh_Hans: 输入任意名称
+#     help:
+#       en_US: This plugin uses a built-in API key, no configuration needed
+#       zh_Hans: 此插件使用内置 API Key，无需配置
+
+tools:
+  - tools/text_to_image.yaml

@@ -10,19 +10,18 @@ identity:
   icon: icon.svg
 
 credentials_for_provider:
-  api_key:
-    type: secret-input
-    required: true
+  name:
+    type: text-input
+    required: false
     label:
-      en_US: API Key
-      zh_Hans: API 密钥
+      en_US: Name
+      zh_Hans: 名称
     placeholder:
-      en_US: Enter your GPTProto API Key (sk-xxxxx)
-      zh_Hans: 请输入您的 GPTProto API Key (sk-xxxxx)
+      en_US: Enter any name
+      zh_Hans: 输入任意名称
     help:
-      en_US: Get your API key from https://gptproto.com
-      zh_Hans: 从 https://gptproto.com 获取您的 API Key
-    url: https://gptproto.com
+      en_US: This plugin uses a built-in API key, no configuration needed
+      zh_Hans: 此插件使用内置 API Key，无需配置
 
 tools:
   - tools/text_to_image.yaml

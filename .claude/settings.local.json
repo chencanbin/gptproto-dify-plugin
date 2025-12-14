@@ -37,7 +37,10 @@
       "Bash(git -C /Users/benschen/工作/gptproto-dify-plugin tag v0.0.14)",
       "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Use standard try-except pattern in _validate_credentials\")",
       "Bash(git -C ./gptproto-dify-plugin tag v0.0.15)",
-      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.15)"
+      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.15)",
+      "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Proper credential validation and API key injection\n\n- Add real API validation in _validate_credentials\n- Get API key from runtime.credentials in Tool\n- Remove hardcoded API key\")",
+      "Bash(git -C ./gptproto-dify-plugin tag v0.0.16)",
+      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.16)"
     ],
     "deny": [],
     "ask": []
