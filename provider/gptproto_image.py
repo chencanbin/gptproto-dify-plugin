@@ -1,5 +1,6 @@
 from typing import Any
 from dify_plugin import ToolProvider
+from dify_plugin.errors.tool import ToolProviderCredentialValidationError
 
 
 class GptprotoImageProvider(ToolProvider):
@@ -7,6 +8,10 @@ class GptprotoImageProvider(ToolProvider):
 
     def _validate_credentials(self, credentials: dict[str, Any]) -> None:
         """
-        无需凭证验证，直接返回成功
+        验证凭证 - 此插件使用内置 API Key，无需验证
         """
-        return None
+        try:
+            # 不需要验证，直接通过
+            pass
+        except Exception as e:
+            raise ToolProviderCredentialValidationError(str(e))

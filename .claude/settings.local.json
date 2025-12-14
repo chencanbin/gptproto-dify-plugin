@@ -32,7 +32,12 @@
       "Bash(git -C /Users/benschen/工作/gptproto-dify-plugin push origin v0.0.13)",
       "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Return None explicitly in _validate_credentials\")",
       "Bash(git -C ./gptproto-dify-plugin tag v0.0.14)",
-      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.14)"
+      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.14)",
+      "Bash(git -C /Users/benschen/工作/gptproto-dify-plugin push origin v0.0.14)",
+      "Bash(git -C /Users/benschen/工作/gptproto-dify-plugin tag v0.0.14)",
+      "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Use standard try-except pattern in _validate_credentials\")",
+      "Bash(git -C ./gptproto-dify-plugin tag v0.0.15)",
+      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.15)"
     ],
     "deny": [],
     "ask": []
