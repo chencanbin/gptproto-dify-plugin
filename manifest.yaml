@@ -1,4 +1,4 @@
-version: 0.0.11
+version: 0.0.12
 type: plugin
 author: gptproto
 name: gptproto-dify-plugin
@@ -27,7 +27,7 @@ plugins:
     - provider/gptproto_image.yaml
 
 meta:
-  version: 0.0.11
+  version: 0.0.12
   arch:
     - amd64
     - arm64
