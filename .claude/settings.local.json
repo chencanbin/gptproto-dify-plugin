@@ -26,7 +26,13 @@
       "Bash(git -C ./gptproto-dify-plugin push origin v0.0.12)",
       "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Add dummy credential field for authorization flow\")",
       "Bash(git -C ./gptproto-dify-plugin tag v0.0.13)",
-      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.13)"
+      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.13)",
+      "Bash(git -C /Users/benschen/工作/gptproto-dify-plugin push origin main)",
+      "Bash(git -C /Users/benschen/工作/gptproto-dify-plugin tag v0.0.13)",
+      "Bash(git -C /Users/benschen/工作/gptproto-dify-plugin push origin v0.0.13)",
+      "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Return None explicitly in _validate_credentials\")",
+      "Bash(git -C ./gptproto-dify-plugin tag v0.0.14)",
+      "Bash(git -C ./gptproto-dify-plugin push origin v0.0.14)"
     ],
     "deny": [],
     "ask": []

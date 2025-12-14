@@ -7,6 +7,6 @@ class GptprotoImageProvider(ToolProvider):
 
     def _validate_credentials(self, credentials: dict[str, Any]) -> None:
         """
-        无需凭证验证
+        无需凭证验证，直接返回成功
         """
-        pass
+        return None
