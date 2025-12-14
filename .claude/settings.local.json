@@ -13,7 +13,9 @@
       "Bash(git commit:*)",
       "Bash(git -C ./gptproto-dify-plugin add:*)",
       "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Remove API key format validation\")",
-      "Bash(git -C ./gptproto-dify-plugin push origin main)"
+      "Bash(git -C ./gptproto-dify-plugin push origin main)",
+      "Bash(brew install:*)",
+      "Bash(gh auth:*)"
     ],
     "deny": [],
     "ask": []
