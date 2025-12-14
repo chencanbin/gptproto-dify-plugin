@@ -16,7 +16,8 @@
       "Bash(git -C ./gptproto-dify-plugin push origin main)",
       "Bash(brew install:*)",
       "Bash(gh auth:*)",
-      "Bash(./scripts/release.sh:*)"
+      "Bash(./scripts/release.sh:*)",
+      "Bash(gh api:*)"
     ],
     "deny": [],
     "ask": []
