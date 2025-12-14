@@ -8,7 +8,7 @@ label:
 description:
   en_US: Generate images using GPTProto Gemini-3-Pro API
   zh_Hans: 使用 GPTProto Gemini-3-Pro API 生成图像
-icon: _assets/icon.png
+icon: icon.png
 created_at: 2024-12-13T00:00:00Z
 
 resource:
@@ -32,6 +32,6 @@ meta:
     - amd64
     - arm64
   runner:
-    language: nodejs
-    version: "18"
-    entrypoint: index.js
+    language: python
+    version: "3.12"
+    entrypoint: main

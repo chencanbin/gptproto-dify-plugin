@@ -8,7 +8,8 @@
       "Bash(pip3 install:*)",
       "Bash(curl:*)",
       "Bash(chmod:*)",
-      "Bash(/tmp/dify-plugin plugin package:*)"
+      "Bash(/tmp/dify-plugin plugin package:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []

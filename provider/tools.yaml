@@ -7,7 +7,7 @@ identity:
   description:
     en_US: Generate images using GPTProto Gemini-3-Pro API
     zh_Hans: 使用 GPTProto Gemini-3-Pro API 生成图像
-  icon: ../_assets/icon.svg
+  icon: icon.svg
 
 # 用户需要提供的凭证配置
 credentials_for_provider:

@@ -4,7 +4,7 @@ identity:
   label:
     en_US: Text to Image
     zh_Hans: 文生图
-  icon: ../_assets/icon.svg
+  icon: icon.svg
 
 description:
   human:
