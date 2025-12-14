@@ -16,10 +16,4 @@ class GptprotoImageProvider(ToolProvider):
         if not api_key:
             raise ToolProviderCredentialValidationError("API Key is required")
 
-        if not api_key.startswith("sk-"):
-            raise ToolProviderCredentialValidationError(
-                'Invalid API Key format. Must start with "sk-"'
-            )
-
-        # 简单验证 API Key 格式即可，实际调用时会验证有效性
-        # 这里不做实际 API 调用，避免不必要的请求
+        # API Key 有效性将在实际调用时验证

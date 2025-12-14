@@ -9,7 +9,11 @@
       "Bash(curl:*)",
       "Bash(chmod:*)",
       "Bash(/tmp/dify-plugin plugin package:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git -C ./gptproto-dify-plugin add:*)",
+      "Bash(git -C ./gptproto-dify-plugin commit -m \"fix: Remove API key format validation\")",
+      "Bash(git -C ./gptproto-dify-plugin push origin main)"
     ],
     "deny": [],
     "ask": []
