@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+ENV/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build
+dist/
+*.egg-info/
+
+# Local files
+.env
+.env.local
+*.local.md
+
+# History
+.history/
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db

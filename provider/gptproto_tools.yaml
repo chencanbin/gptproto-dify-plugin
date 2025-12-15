@@ -1,0 +1,33 @@
+identity:
+  author: gptproto
+  name: gptproto_tools
+  label:
+    en_US: GPTProto Tools
+    zh_Hans: GPTProto 工具
+  description:
+    en_US: AI tools powered by GPTProto API
+    zh_Hans: GPTProto API 驱动的 AI 工具
+  icon: icon.svg
+  tags:
+    - image
+credentials_for_provider:
+  api_key:
+    type: secret-input
+    required: true
+    label:
+      en_US: GPTProto API Key
+      zh_Hans: GPTProto API Key
+    placeholder:
+      en_US: Please input your GPTProto API key
+      zh_Hans: 请输入您的 GPTProto API Key
+    help:
+      en_US: Get your API Key from GPTProto dashboard
+      zh_Hans: 从 GPTProto 控制台获取 API Key
+    url: https://gptproto.com/dashboard/api-key
+tools:
+  - tools/gemini_text_to_image.yaml
+  - tools/gemini_image_edit.yaml
+  - tools/gemini_text_generation.yaml
+extra:
+  python:
+    source: provider/gptproto_tools.py

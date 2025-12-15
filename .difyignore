@@ -1,0 +1,14 @@
+.git
+.gitignore
+.history
+.claude
+.vscode
+dist
+scripts
+*.difypkg
+.difyignore
+.DS_Store
+__pycache__
+*.pyc
+venv
+.venv
