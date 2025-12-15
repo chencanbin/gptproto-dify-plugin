@@ -1,144 +1,132 @@
 #!/bin/bash
 
-# GPTProto Dify Plugin 自动发布脚本
-# 使用方法: ./scripts/release.sh [版本号]
-# 示例: ./scripts/release.sh 0.0.5
+# GPTProto Dify Plugin Release Script
+# This script automates the process of packaging and releasing the plugin
 
-set -e
+set -e  # Exit on any error
 
-# 颜色定义
+# Colors for output
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# 获取脚本所在目录的父目录（项目根目录）
+# Get script directory and project root
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
-PARENT_DIR="$(dirname "$PROJECT_DIR")"
+PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 
-cd "$PROJECT_DIR"
+# Plugin info
+PLUGIN_NAME="gptproto"
 
-# 检查是否安装了 gh CLI
-if ! command -v gh &> /dev/null; then
-    echo -e "${RED}错误: 需要安装 GitHub CLI (gh)${NC}"
-    echo "安装方法: brew install gh"
-    echo "然后运行: gh auth login"
-    exit 1
+echo -e "${BLUE}========================================${NC}"
+echo -e "${BLUE}  GPTProto Dify Plugin Release Script  ${NC}"
+echo -e "${BLUE}========================================${NC}"
+
+# Function to print colored messages
+info() { echo -e "${BLUE}[INFO]${NC} $1"; }
+success() { echo -e "${GREEN}[SUCCESS]${NC} $1"; }
+warning() { echo -e "${YELLOW}[WARNING]${NC} $1"; }
+error() { echo -e "${RED}[ERROR]${NC} $1"; exit 1; }
+
+# Change to project root
+cd "$PROJECT_ROOT"
+info "Working directory: $PROJECT_ROOT"
+
+# Check if dify CLI is installed
+if ! command -v dify &> /dev/null; then
+    error "dify CLI not found. Please install it first: pip install dify-plugin-daemon"
 fi
 
-# 检查 gh 是否已登录
-if ! gh auth status &> /dev/null; then
-    echo -e "${RED}错误: GitHub CLI 未登录${NC}"
-    echo "请运行: gh auth login"
-    exit 1
-fi
+# Get current version from manifest.yaml
+CURRENT_VERSION=$(grep "^version:" manifest.yaml | head -1 | awk '{print $2}')
+info "Current version: $CURRENT_VERSION"
 
-# 获取版本号
-if [ -z "$1" ]; then
-    # 从 manifest.yaml 读取当前版本
-    CURRENT_VERSION=$(grep "^version:" manifest.yaml | head -1 | awk '{print $2}')
-    echo -e "${YELLOW}当前版本: $CURRENT_VERSION${NC}"
-    echo -n "请输入新版本号 (留空使用当前版本): "
-    read INPUT_VERSION
-    VERSION=${INPUT_VERSION:-$CURRENT_VERSION}
-else
-    VERSION=$1
-fi
-
-# 确保版本号格式正确
-if [[ ! $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    echo -e "${RED}错误: 版本号格式不正确，应为 x.y.z 格式${NC}"
-    exit 1
-fi
-
-TAG="v$VERSION"
-
-echo -e "${GREEN}准备发布版本: $TAG${NC}"
-
-# 更新 manifest.yaml 中的版本号
-echo "更新 manifest.yaml 版本号..."
-sed -i '' "s/^version: .*/version: $VERSION/" manifest.yaml
-sed -i '' "s/version: [0-9]*\.[0-9]*\.[0-9]*/version: $VERSION/" manifest.yaml
-
-# 检查是否有未提交的更改
-if [[ -n $(git status -s) ]]; then
-    echo "提交更改..."
-    git add -A
-    git commit -m "chore: bump version to $VERSION"
-fi
-
-# 推送到远程
-echo "推送到 GitHub..."
-git push origin main
-
-# 删除已存在的同名 tag（如果有）
-if git tag -l | grep -q "^$TAG$"; then
-    echo "删除已存在的 tag: $TAG"
-    git tag -d "$TAG" 2>/dev/null || true
-    git push origin ":refs/tags/$TAG" 2>/dev/null || true
-fi
-
-# 创建新 tag
-echo "创建 tag: $TAG"
-git tag "$TAG"
-git push origin "$TAG"
-
-# 打包插件
-echo "打包插件..."
-DIFY_CLI="/tmp/dify-plugin"
-
-# 检查 dify-plugin CLI 是否存在
-if [ ! -f "$DIFY_CLI" ]; then
-    echo "下载 Dify Plugin CLI..."
-    curl -L -o "$DIFY_CLI" https://github.com/langgenius/dify-plugin-daemon/releases/download/0.5.1/dify-plugin-darwin-arm64
-    chmod +x "$DIFY_CLI"
-fi
-
-# 打包
-cd "$PARENT_DIR"
-rm -f gptproto-dify-plugin.difypkg
-"$DIFY_CLI" plugin package ./gptproto-dify-plugin
-
-PKG_FILE="$PARENT_DIR/gptproto-dify-plugin.difypkg"
-
-if [ ! -f "$PKG_FILE" ]; then
-    echo -e "${RED}错误: 打包失败${NC}"
-    exit 1
-fi
-
-echo -e "${GREEN}打包成功: $PKG_FILE${NC}"
-
-# 删除已存在的 release（如果有）
-if gh release view "$TAG" &>/dev/null; then
-    echo "删除已存在的 release: $TAG"
-    gh release delete "$TAG" --yes
-fi
-
-# 创建 GitHub Release 并上传文件
-echo "创建 GitHub Release..."
-cd "$PROJECT_DIR"
-gh release create "$TAG" \
-    --title "$TAG" \
-    --notes "## GPTProto Image Generation Plugin $TAG
-
-### Features
-- Text to Image generation using GPTProto Gemini-3-Pro API
-- Support multiple sizes (1K, 2K)
-- Support multiple aspect ratios (1:1, 3:2, 2:3, 16:9, 9:16)
-- Support multiple output formats (PNG, JPG, WebP)
-
-### Installation
-1. Download the \`.difypkg\` file
-2. Go to Dify Plugin page
-3. Click 'Install Plugin' -> 'Local Upload'
-4. Upload the downloaded file
-5. Configure your GPTProto API Key" \
-    "$PKG_FILE"
-
+# Ask for new version or use current
 echo ""
-echo -e "${GREEN}============================================${NC}"
-echo -e "${GREEN}发布成功! ${NC}"
-echo -e "${GREEN}版本: $TAG${NC}"
-echo -e "${GREEN}Release URL: https://github.com/chencanbin/gptproto-dify-plugin/releases/tag/$TAG${NC}"
-echo -e "${GREEN}============================================${NC}"
+read -p "Enter new version (press Enter to keep $CURRENT_VERSION): " NEW_VERSION
+NEW_VERSION=${NEW_VERSION:-$CURRENT_VERSION}
+
+# Update version in manifest.yaml if changed
+if [ "$NEW_VERSION" != "$CURRENT_VERSION" ]; then
+    info "Updating version to $NEW_VERSION..."
+    sed -i.bak "s/^version: .*/version: $NEW_VERSION/" manifest.yaml
+    rm -f manifest.yaml.bak
+    success "Version updated to $NEW_VERSION"
+fi
+
+# Git operations
+echo ""
+info "Checking git status..."
+if [ -n "$(git status --porcelain)" ]; then
+    echo ""
+    git status --short
+    echo ""
+    read -p "Do you want to commit all changes? (y/n): " COMMIT_CHANGES
+    if [ "$COMMIT_CHANGES" = "y" ] || [ "$COMMIT_CHANGES" = "Y" ]; then
+        read -p "Enter commit message (default: 'Release v$NEW_VERSION'): " COMMIT_MSG
+        COMMIT_MSG=${COMMIT_MSG:-"Release v$NEW_VERSION"}
+
+        git add .
+        git commit -m "$COMMIT_MSG"
+        success "Changes committed"
+    fi
+fi
+
+# Create output directory
+OUTPUT_DIR="$PROJECT_ROOT/dist"
+mkdir -p "$OUTPUT_DIR"
+
+# Package the plugin
+echo ""
+info "Packaging plugin..."
+PACKAGE_FILE="$OUTPUT_DIR/${PLUGIN_NAME}-${NEW_VERSION}.difypkg"
+
+# Use dify CLI to package
+dify plugin package "$PROJECT_ROOT" -o "$OUTPUT_DIR"
+
+# Find the generated package file
+GENERATED_PKG=$(ls -t "$OUTPUT_DIR"/*.difypkg 2>/dev/null | head -1)
+if [ -n "$GENERATED_PKG" ] && [ -f "$GENERATED_PKG" ]; then
+    # Rename to include version if needed
+    if [ "$GENERATED_PKG" != "$PACKAGE_FILE" ]; then
+        mv "$GENERATED_PKG" "$PACKAGE_FILE" 2>/dev/null || PACKAGE_FILE="$GENERATED_PKG"
+    fi
+    success "Plugin packaged: $PACKAGE_FILE"
+else
+    error "Failed to create package file"
+fi
+
+# Ask about creating git tag
+echo ""
+read -p "Do you want to create a git tag v$NEW_VERSION? (y/n): " CREATE_TAG
+if [ "$CREATE_TAG" = "y" ] || [ "$CREATE_TAG" = "Y" ]; then
+    if git rev-parse "v$NEW_VERSION" >/dev/null 2>&1; then
+        warning "Tag v$NEW_VERSION already exists"
+    else
+        git tag -a "v$NEW_VERSION" -m "Release v$NEW_VERSION"
+        success "Created tag v$NEW_VERSION"
+    fi
+fi
+
+# Ask about pushing to remote
+echo ""
+read -p "Do you want to push to remote (including tags)? (y/n): " PUSH_REMOTE
+if [ "$PUSH_REMOTE" = "y" ] || [ "$PUSH_REMOTE" = "Y" ]; then
+    git push origin HEAD
+    git push origin --tags
+    success "Pushed to remote"
+fi
+
+# Summary
+echo ""
+echo -e "${GREEN}========================================${NC}"
+echo -e "${GREEN}          Release Complete!            ${NC}"
+echo -e "${GREEN}========================================${NC}"
+echo ""
+echo "Version:  $NEW_VERSION"
+echo "Package:  $PACKAGE_FILE"
+echo ""
+info "To upload to Dify marketplace, use:"
+echo "  dify plugin publish $PACKAGE_FILE"
+echo ""

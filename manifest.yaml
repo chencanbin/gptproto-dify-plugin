@@ -1,33 +1,31 @@
-version: 0.0.16
+version: 0.0.2
 type: plugin
 author: gptproto
-name: gptproto-dify-plugin
+name: gptproto
 label:
-  en_US: GPTProto Image Generation
-  zh_Hans: GPTProto 图像生成
+  en_US: GPTProto
+  zh_Hans: GPTProto
 description:
-  en_US: Generate images using GPTProto Gemini-3-Pro API
-  zh_Hans: 使用 GPTProto Gemini-3-Pro API 生成图像
-icon: icon.png
-created_at: 2024-12-13T00:00:00Z
-
+  en_US: GPTProto is a pay-as-you-go enterprise AI resource hub that offers the latest and most comprehensive AI models and APIs on the market, along with a variety of ready-to-use online AI applications.
+  zh_Hans: GPTProto是一个按用量付费的企业级AI资源平台，提供市场上最新、最全面的AI模型和API，以及多种开箱即用的在线AI应用。
+icon: icon.svg
+icon_dark: icon-dark.svg
 resource:
-  memory: 268435456  # 256MB
-
-permission:
-  tool:
-    enabled: true
-  endpoint:
-    enabled: true
-  storage:
-    enabled: false
-
+  memory: 268435456
+  permission:
+    model:
+      enabled: true
+      llm: true
+      text_embedding: true
+      rerank: true
+      tts: true
+      speech2text: false
+      moderation: false
 plugins:
-  tools:
-    - provider/gptproto_image.yaml
-
+  models:
+    - provider/gptproto.yaml
 meta:
-  version: 0.0.16
+  version: 0.0.1
   arch:
     - amd64
     - arm64
@@ -35,3 +33,5 @@ meta:
     language: python
     version: "3.12"
     entrypoint: main
+created_at: 2025-08-11T16:40:24.265412+08:00
+privacy: https://gptproto.com/legal/privacy/

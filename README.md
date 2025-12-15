@@ -1,156 +1,64 @@
-# GPTProto Dify Plugin
+# GPTProto Plugin Documentation
 
-使用 GPTProto Gemini-3-Pro API 生成图像的 Dify 插件。
+## 📋 Overview
 
-## 功能
+The GPTProto plugin is an AI model provider plugin designed specifically for the Dify platform, supporting multiple types of AI services including Large Language Models (LLM), text embedding, reranking, and text-to-speech functions. By integrating GPTProto's API services, users can access the latest AI models within their Dify applications.
 
-- **文生图 (Text to Image)**: 根据文本提示词生成高质量图像
-  - 支持多种尺寸: 1K, 2K
-  - 支持多种宽高比: 1:1, 3:2, 2:3, 16:9, 9:16
-  - 支持多种输出格式: PNG, JPG, WebP
+### ✨ Key Features
 
-## 项目结构
+- **Multi-model Type Support**: Supports LLM, text embedding, reranking, text-to-speech, and other AI services
+- **Pay-as-you-go**: Uses GPTProto's pay-as-you-go model for cost control
+- **Latest Models**: Provides the most comprehensive and up-to-date AI model selection available
+- **Simple Integration**: Quick integration through API Key
+- **Flexible Configuration**: Supports both predefined models and custom model configurations
 
-```
-gptproto-dify-plugin/
-├── manifest.yaml              # 插件元数据配置
-├── package.json               # Node.js 依赖配置
-├── index.js                   # 插件入口文件
-├── .env.example               # 环境变量示例
-├── .gitignore                 # Git 忽略配置
-├── lib/
-│   └── gptproto-client.js     # GPTProto API 客户端
-├── provider/
-│   └── tools.yaml             # 工具提供者配置 (含凭证配置)
-├── tools/
-│   ├── text_to_image.yaml     # 文生图工具定义
-│   └── text_to_image.js       # 文生图工具实现
-└── _assets/
-    └── icon.svg               # 插件图标
-```
+## 🚀 Preset Models
 
-## 快速开始
+### 1. Large Language Models (LLM)
 
-### 1. 安装依赖
+- **claude-sonnet-4-20250514** - Claude's latest Sonnet 4 model with thinking mode and advanced features
+- **claude-opus-4-1-20250805** - Claude Opus 4 model with powerful reasoning and creative capabilities
+- **gpt-5** - OpenAI GPT-5 model supporting multi-tool calls and advanced reasoning
+- **gpt-oss-120b** - Open-source version of large-scale language model
+- **gemini-2.5-pro** - Google Gemini 2.5 Pro with powerful multimodal capabilities
+- **gemini-2.5-flash** - Fast response version of Gemini 2.5
+- **o3** - OpenAI O3 reasoning model
+- **qwen3-235b-a22b-instruct-2507** - Alibaba Tongyi Qianwen large-scale model
 
-```bash
-npm install
-```
+### 2. Text Embedding Models
 
-### 2. 启动开发服务器
+- **jina-clip-v2** - Jina AI multimodal embedding model supporting text and image processing
 
-```bash
-npm run dev
-```
+### 3. Reranking Models
 
-### 3. 测试插件
+- **jina-reranker-m0** - Jina AI professional document reranking model
 
-```bash
-# 健康检查
-curl http://localhost:3000/health
+### 4. Text-to-Speech (TTS)
 
-# 测试 Ping
-curl -X POST http://localhost:3000/api/dify/receive \
-  -H "Content-Type: application/json" \
-  -d '{"point": "ping"}'
+- **tts-1** - OpenAI high-quality text-to-speech service
 
-# 测试凭证验证
-curl -X POST http://localhost:3000/api/dify/receive \
-  -H "Content-Type: application/json" \
-  -d '{
-    "point": "provider.validate_credentials",
-    "params": {
-      "credentials": {
-        "api_key": "sk-your-api-key"
-      }
-    }
-  }'
+## 🌟 More Model Options
 
-# 测试文生图
-curl -X POST http://localhost:3000/api/dify/receive \
-  -H "Content-Type: application/json" \
-  -d '{
-    "point": "tool.invoke",
-    "params": {
-      "tool_name": "text_to_image",
-      "tool_parameters": {
-        "prompt": "A beautiful sunset over the ocean",
-        "size": "1K",
-        "aspect_ratio": "16:9",
-        "output_format": "png"
-      },
-      "credentials": {
-        "api_key": "sk-your-api-key"
-      }
-    }
-  }'
-```
+In addition to the preset models above, the GPTProto platform supports many more AI model choices. You can visit the [GPTProto pricing page](https://gptproto.com/pricing/) to view the complete model list, including newly released cutting-edge models and various specialized models to meet different application scenarios.
 
-## 配置说明
+Through the custom model configuration feature, you can easily access these additional model resources and enjoy the comprehensive AI services provided by the GPTProto platform.
 
-### 用户凭证
+## 🛠️ Configuration
 
-使用此插件前，用户需要在 Dify 中配置 GPTProto API Key：
+### How to Obtain a GPTProto API Key
 
-1. 在 Dify 工作区中添加此插件
-2. 输入您的 GPTProto API Key (格式: `sk-xxxxx`)
-3. 保存配置
+1. Visit [GPTProto](https://www.gptproto.com/) official website, register and log in to your account
+2. Click "API Keys" in the left menu
+3. Click "Add API KEY", copy and save the generated API key
 
-### API 参数
+![API Key Setup Example](https://file.gptproto.com/gpt/imgs/20250722/7a3597061d9a484ca7358867930a8316.jpg)
 
-| 参数 | 类型 | 必填 | 默认值 | 说明 |
-|------|------|------|--------|------|
-| prompt | string | 是 | - | 图像描述提示词 |
-| size | string | 否 | 1K | 图像尺寸 (1K, 2K) |
-| aspect_ratio | string | 否 | 1:1 | 宽高比 |
-| output_format | string | 否 | png | 输出格式 |
+During usage, you may need to pay the API service provider. Please refer to GPTProto's relevant pricing policy for detailed fee information.
 
-## 开发指南
+## 🔗 Open Source
 
-### 添加新工具
+This plugin is completely open source, and we welcome developers to contribute and improve it. You can view the complete source code on GitHub, understand the implementation details of the plugin, or submit issues and suggestions.
 
-1. 在 `tools/` 目录下创建 `your_tool.yaml` 定义工具参数
-2. 在 `tools/` 目录下创建 `your_tool.js` 实现工具逻辑
-3. 在 `provider/tools.yaml` 中注册新工具
-4. 在 `index.js` 中注册工具实例
+**Source Repository**: [https://github.com/gptproto/dify-gptproto-provider-plugin](https://github.com/gptproto/dify-gptproto-provider-plugin)
 
-### API 客户端使用
-
-```javascript
-const GPTProtoClient = require('./lib/gptproto-client');
-
-const client = new GPTProtoClient('sk-your-api-key');
-
-// 一站式生成图像
-const result = await client.generateImage({
-  prompt: 'A beautiful landscape',
-  size: '1K',
-  aspect_ratio: '16:9',
-  output_format: 'png'
-});
-
-console.log(result.image_url);
-```
-
-## 部署
-
-### 环境要求
-
-- Node.js >= 18.0.0
-- npm >= 9.0.0
-
-### 生产部署
-
-```bash
-npm start
-```
-
-## 许可证
-
-MIT License
-
-## 相关链接
-
-- [Dify 官方文档](https://docs.dify.ai/)
-- [Dify 插件开发指南](https://docs.dify.ai/en/develop-plugin/getting-started/getting-started-dify-plugin)
-- [GPTProto API 文档](https://gptproto.com)
+If you encounter any issues or have improvement suggestions during usage, please feel free to submit Issues or Pull Requests in the GitHub repository.
