@@ -1,0 +1,109 @@
+identity:
+  name: gpt_image_edit
+  author: gptproto
+  label:
+    en_US: gpt-image-1 / image-edit
+    zh_Hans: gpt-image-1 / 图片编辑
+description:
+  human:
+    en_US: Edit images using text prompts and reference images via OpenAI GPT-Image-1 model.
+    zh_Hans: 使用文本提示和参考图片通过 OpenAI GPT-Image-1 模型编辑图片。
+  llm: Edit or blend images using text prompts and reference images. Can combine features from multiple images or modify existing images based on text descriptions.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A detailed text description of how to edit or blend the images
+      zh_Hans: 详细描述如何编辑或混合图片
+    llm_description: A detailed text description of how to edit or blend the images. Be specific about what changes to make, what features to combine, and the desired output style.
+    form: llm
+  - name: images
+    type: string
+    required: true
+    label:
+      en_US: Image URLs
+      zh_Hans: 图片链接
+    human_description:
+      en_US: One or more image URLs separated by commas
+      zh_Hans: 一个或多个图片链接，用逗号分隔
+    llm_description: One or more image URLs to edit or blend, separated by commas. These images will be used as reference or source for the edit operation.
+    form: llm
+  - name: quality
+    type: select
+    required: false
+    default: "medium"
+    label:
+      en_US: Quality
+      zh_Hans: 质量
+    human_description:
+      en_US: The quality of the generated image
+      zh_Hans: 生成图片的质量
+    options:
+      - value: "low"
+        label:
+          en_US: Low
+          zh_Hans: 低
+      - value: "medium"
+        label:
+          en_US: Medium
+          zh_Hans: 中
+      - value: "high"
+        label:
+          en_US: High
+          zh_Hans: 高
+    form: form
+  - name: size
+    type: select
+    required: false
+    default: "1024x1024"
+    label:
+      en_US: Size
+      zh_Hans: 尺寸
+    human_description:
+      en_US: The size of the generated image
+      zh_Hans: 生成图片的尺寸
+    options:
+      - value: "1024x1024"
+        label:
+          en_US: 1024x1024 (Square)
+          zh_Hans: 1024x1024 (正方形)
+      - value: "1536x1024"
+        label:
+          en_US: 1536x1024 (Landscape)
+          zh_Hans: 1536x1024 (横屏)
+      - value: "1024x1536"
+        label:
+          en_US: 1024x1536 (Portrait)
+          zh_Hans: 1024x1536 (竖屏)
+    form: form
+  - name: background
+    type: select
+    required: false
+    default: "auto"
+    label:
+      en_US: Background
+      zh_Hans: 背景
+    human_description:
+      en_US: Background style for the generated image
+      zh_Hans: 生成图片的背景样式
+    options:
+      - value: "auto"
+        label:
+          en_US: Auto
+          zh_Hans: 自动
+      - value: "transparent"
+        label:
+          en_US: Transparent
+          zh_Hans: 透明
+      - value: "opaque"
+        label:
+          en_US: Opaque
+          zh_Hans: 不透明
+    form: form
+extra:
+  python:
+    source: tools/gpt_image_edit.py

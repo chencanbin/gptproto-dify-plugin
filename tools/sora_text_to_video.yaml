@@ -1,0 +1,96 @@
+identity:
+  name: sora_text_to_video
+  author: gptproto
+  label:
+    en_US: sora-2 / text-to-video
+    zh_Hans: sora-2 / text-to-video
+description:
+  human:
+    en_US: Generate videos from text prompts using OpenAI Sora 2 model via GPTProto API.
+    zh_Hans: 使用 OpenAI Sora 2 模型通过 GPTProto API 根据文本生成视频。
+  llm: Generate videos from text prompts using OpenAI Sora 2 model. This tool creates high-quality videos based on detailed text descriptions.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A detailed text description of the video you want to generate
+      zh_Hans: 您想要生成的视频的详细文字描述
+    llm_description: A detailed text description of the video to generate. Describe the scene, action, characters, and style.
+    form: llm
+  - name: duration
+    type: number
+    required: false
+    default: 5
+    label:
+      en_US: Duration (seconds)
+      zh_Hans: 时长（秒）
+    human_description:
+      en_US: Video duration in seconds (5, 10, or 20)
+      zh_Hans: 视频时长，单位秒（5、10 或 20）
+    form: form
+  - name: orientation
+    type: select
+    required: false
+    default: "landscape"
+    label:
+      en_US: Orientation
+      zh_Hans: 方向
+    human_description:
+      en_US: Video orientation
+      zh_Hans: 视频方向
+    options:
+      - value: "landscape"
+        label:
+          en_US: Landscape
+          zh_Hans: 横屏
+      - value: "portrait"
+        label:
+          en_US: Portrait
+          zh_Hans: 竖屏
+      - value: "square"
+        label:
+          en_US: Square
+          zh_Hans: 正方形
+    form: form
+  - name: size
+    type: select
+    required: false
+    default: "small"
+    label:
+      en_US: Size
+      zh_Hans: 尺寸
+    human_description:
+      en_US: Video resolution size
+      zh_Hans: 视频分辨率
+    options:
+      - value: "small"
+        label:
+          en_US: Small (480p)
+          zh_Hans: 小 (480p)
+      - value: "medium"
+        label:
+          en_US: Medium (720p)
+          zh_Hans: 中 (720p)
+      - value: "large"
+        label:
+          en_US: Large (1080p)
+          zh_Hans: 大 (1080p)
+    form: form
+  - name: character_url
+    type: string
+    required: false
+    label:
+      en_US: Character Reference URL
+      zh_Hans: 角色参考链接
+    human_description:
+      en_US: Optional video URL for character motion reference
+      zh_Hans: 可选的角色动作参考视频链接
+    llm_description: Optional video URL to use as motion reference for character animation.
+    form: form
+extra:
+  python:
+    source: tools/sora_text_to_video.py

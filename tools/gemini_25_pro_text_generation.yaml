@@ -1,14 +1,14 @@
 identity:
-  name: gemini_text_generation
+  name: gemini_25_pro_text_generation
   author: gptproto
   label:
-    en_US: gemini-3-pro-preview / text-to-text
-    zh_Hans: gemini-3-pro-preview / text-to-text
+    en_US: gemini-2.5-pro / text-to-text
+    zh_Hans: gemini-2.5-pro / text-to-text
 description:
   human:
-    en_US: Generate text, analyze images, and analyze files using Google Gemini 3 Pro model via GPTProto API.
-    zh_Hans: 使用 Google Gemini 3 Pro 模型通过 GPTProto API 生成文本、分析图片和分析文件。
-  llm: Generate text responses, analyze images, and analyze files using Google Gemini 3 Pro model. This tool can answer questions, write content, analyze images, and parse documents like PDFs.
+    en_US: Generate text, analyze images, and analyze files using Google Gemini 2.5 Pro model via GPTProto API.
+    zh_Hans: 使用 Google Gemini 2.5 Pro 模型通过 GPTProto API 生成文本、分析图片和分析文件。
+  llm: Generate text responses, analyze images, and analyze files using Google Gemini 2.5 Pro model. This tool can answer questions, write content, analyze images, and parse documents like PDFs.
 parameters:
   - name: prompt
     type: string
@@ -67,4 +67,4 @@ parameters:
     form: form
 extra:
   python:
-    source: tools/gemini_text_generation.py
+    source: tools/gemini_25_pro_text_generation.py

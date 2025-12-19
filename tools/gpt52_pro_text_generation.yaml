@@ -1,14 +1,14 @@
 identity:
-  name: gemini_text_generation
+  name: gpt52_pro_text_generation
   author: gptproto
   label:
-    en_US: gemini-3-pro-preview / text-to-text
-    zh_Hans: gemini-3-pro-preview / text-to-text
+    en_US: gpt-5.2-pro / multimodal
+    zh_Hans: gpt-5.2-pro / 多模态
 description:
   human:
-    en_US: Generate text, analyze images, and analyze files using Google Gemini 3 Pro model via GPTProto API.
-    zh_Hans: 使用 Google Gemini 3 Pro 模型通过 GPTProto API 生成文本、分析图片和分析文件。
-  llm: Generate text responses, analyze images, and analyze files using Google Gemini 3 Pro model. This tool can answer questions, write content, analyze images, and parse documents like PDFs.
+    en_US: Generate text, analyze images, analyze files, and search the web using OpenAI GPT-5.2-Pro model via GPTProto API.
+    zh_Hans: 使用 OpenAI GPT-5.2-Pro 模型通过 GPTProto API 生成文本、分析图片、分析文件和搜索网页。
+  llm: Generate text responses, analyze images, analyze files, and search the web using OpenAI GPT-5.2-Pro model. This tool can answer questions, write content, analyze images, parse documents like PDFs, and search for real-time information.
 parameters:
   - name: prompt
     type: string
@@ -43,28 +43,18 @@ parameters:
       zh_Hans: 可选的文件链接用于分析（支持 PDF 等文档）
     llm_description: Optional file URL to analyze along with the text prompt. Supports PDF and other document formats.
     form: llm
-  - name: temperature
-    type: number
+  - name: enable_web_search
+    type: boolean
     required: false
-    default: 0.7
+    default: false
     label:
-      en_US: Temperature
-      zh_Hans: 温度
+      en_US: Enable Web Search
+      zh_Hans: 启用网页搜索
     human_description:
-      en_US: Controls randomness (0.0-1.0). Lower is more focused, higher is more creative.
-      zh_Hans: 控制随机性 (0.0-1.0)。越低越专注，越高越有创意。
-    form: form
-  - name: max_tokens
-    type: number
-    required: false
-    default: 4096
-    label:
-      en_US: Max Tokens
-      zh_Hans: 最大Token数
-    human_description:
-      en_US: Maximum number of tokens in the response
-      zh_Hans: 响应中的最大Token数
+      en_US: Enable real-time web search for up-to-date information
+      zh_Hans: 启用实时网页搜索以获取最新信息
+    llm_description: Enable real-time web search to get up-to-date information from the internet.
     form: form
 extra:
   python:
-    source: tools/gemini_text_generation.py
+    source: tools/gpt52_pro_text_generation.py

@@ -1,0 +1,107 @@
+identity:
+  name: sora_image_to_video
+  author: gptproto
+  label:
+    en_US: sora-2 / image-to-video
+    zh_Hans: sora-2 / image-to-video
+description:
+  human:
+    en_US: Generate videos from images using OpenAI Sora 2 model via GPTProto API.
+    zh_Hans: 使用 OpenAI Sora 2 模型通过 GPTProto API 根据图片生成视频。
+  llm: Generate videos from images using OpenAI Sora 2 model. This tool creates high-quality videos based on input images and text prompts describing the motion.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A text description of the motion or action to apply to the image
+      zh_Hans: 描述图片中要发生的动作或运动
+    llm_description: A text description of the motion or action to apply to the image. Describe what should happen in the video.
+    form: llm
+  - name: images
+    type: string
+    required: true
+    label:
+      en_US: Image URL
+      zh_Hans: 图片链接
+    human_description:
+      en_US: The URL of the image to animate
+      zh_Hans: 要制作成视频的图片链接
+    llm_description: The URL of the image to use as the starting frame for the video.
+    form: llm
+  - name: duration
+    type: number
+    required: false
+    default: 5
+    label:
+      en_US: Duration (seconds)
+      zh_Hans: 时长（秒）
+    human_description:
+      en_US: Video duration in seconds (5, 10, or 20)
+      zh_Hans: 视频时长，单位秒（5、10 或 20）
+    form: form
+  - name: orientation
+    type: select
+    required: false
+    default: "landscape"
+    label:
+      en_US: Orientation
+      zh_Hans: 方向
+    human_description:
+      en_US: Video orientation
+      zh_Hans: 视频方向
+    options:
+      - value: "landscape"
+        label:
+          en_US: Landscape
+          zh_Hans: 横屏
+      - value: "portrait"
+        label:
+          en_US: Portrait
+          zh_Hans: 竖屏
+      - value: "square"
+        label:
+          en_US: Square
+          zh_Hans: 正方形
+    form: form
+  - name: size
+    type: select
+    required: false
+    default: "small"
+    label:
+      en_US: Size
+      zh_Hans: 尺寸
+    human_description:
+      en_US: Video resolution size
+      zh_Hans: 视频分辨率
+    options:
+      - value: "small"
+        label:
+          en_US: Small (480p)
+          zh_Hans: 小 (480p)
+      - value: "medium"
+        label:
+          en_US: Medium (720p)
+          zh_Hans: 中 (720p)
+      - value: "large"
+        label:
+          en_US: Large (1080p)
+          zh_Hans: 大 (1080p)
+    form: form
+  - name: character_url
+    type: string
+    required: false
+    label:
+      en_US: Character Reference URL
+      zh_Hans: 角色参考链接
+    human_description:
+      en_US: Optional video URL for character motion reference
+      zh_Hans: 可选的角色动作参考视频链接
+    llm_description: Optional video URL to use as motion reference for character animation.
+    form: form
+extra:
+  python:
+    source: tools/sora_image_to_video.py

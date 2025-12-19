@@ -1,0 +1,98 @@
+identity:
+  name: gpt_image_text_to_image
+  author: gptproto
+  label:
+    en_US: gpt-image-1 / text-to-image
+    zh_Hans: gpt-image-1 / 文生图
+description:
+  human:
+    en_US: Generate images from text prompts using OpenAI GPT-Image-1 model via GPTProto API.
+    zh_Hans: 使用 OpenAI GPT-Image-1 模型通过 GPTProto API 根据文本提示生成图片。
+  llm: Generate images from text prompts using OpenAI GPT-Image-1 model. This tool creates high-quality images based on detailed text descriptions.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A detailed text description of the image you want to generate
+      zh_Hans: 您想要生成的图片的详细文字描述
+    llm_description: A detailed text description of the image to generate. Be specific about subjects, style, colors, composition, and mood.
+    form: llm
+  - name: quality
+    type: select
+    required: false
+    default: "medium"
+    label:
+      en_US: Quality
+      zh_Hans: 质量
+    human_description:
+      en_US: The quality of the generated image
+      zh_Hans: 生成图片的质量
+    options:
+      - value: "low"
+        label:
+          en_US: Low
+          zh_Hans: 低
+      - value: "medium"
+        label:
+          en_US: Medium
+          zh_Hans: 中
+      - value: "high"
+        label:
+          en_US: High
+          zh_Hans: 高
+    form: form
+  - name: size
+    type: select
+    required: false
+    default: "1024x1024"
+    label:
+      en_US: Size
+      zh_Hans: 尺寸
+    human_description:
+      en_US: The size of the generated image
+      zh_Hans: 生成图片的尺寸
+    options:
+      - value: "1024x1024"
+        label:
+          en_US: 1024x1024 (Square)
+          zh_Hans: 1024x1024 (正方形)
+      - value: "1536x1024"
+        label:
+          en_US: 1536x1024 (Landscape)
+          zh_Hans: 1536x1024 (横屏)
+      - value: "1024x1536"
+        label:
+          en_US: 1024x1536 (Portrait)
+          zh_Hans: 1024x1536 (竖屏)
+    form: form
+  - name: background
+    type: select
+    required: false
+    default: "auto"
+    label:
+      en_US: Background
+      zh_Hans: 背景
+    human_description:
+      en_US: Background style for the generated image
+      zh_Hans: 生成图片的背景样式
+    options:
+      - value: "auto"
+        label:
+          en_US: Auto
+          zh_Hans: 自动
+      - value: "transparent"
+        label:
+          en_US: Transparent
+          zh_Hans: 透明
+      - value: "opaque"
+        label:
+          en_US: Opaque
+          zh_Hans: 不透明
+    form: form
+extra:
+  python:
+    source: tools/gpt_image_text_to_image.py

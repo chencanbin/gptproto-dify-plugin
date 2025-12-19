@@ -10,15 +10,15 @@ from dify_plugin.entities.tool import ToolInvokeMessage
 API_BASE = "https://gptproto.com/v1beta"
 
 
-class GeminiTextGenerationTool(Tool):
+class Gemini25ProTextGenerationTool(Tool):
     """
     Tool for generating text, analyzing images, and analyzing files
-    using Google Gemini 3 Pro model via GPTProto API.
+    using Google Gemini 2.5 Pro model via GPTProto API.
     """
 
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage]:
         """
-        Invoke the Gemini text generation tool.
+        Invoke the Gemini 2.5 Pro text generation tool.
         """
         # Get API key from credentials
         api_key = self.runtime.credentials.get("api_key")
@@ -100,9 +100,9 @@ class GeminiTextGenerationTool(Tool):
         max_tokens: int,
     ) -> str | None:
         """
-        Generate text using Gemini 3 Pro API.
+        Generate text using Gemini 2.5 Pro API.
         """
-        url = f"{API_BASE}/models/gemini-3-pro-preview:generateContent"
+        url = f"{API_BASE}/models/gemini-2.5-pro:generateContent"
         headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
@@ -117,19 +117,19 @@ class GeminiTextGenerationTool(Tool):
             if image_data:
                 mime_type = self._get_mime_type(image_url)
                 parts.append({
-                    "inlineData": {
-                        "mimeType": mime_type,
+                    "inline_data": {
+                        "mime_type": mime_type,
                         "data": image_data
                     }
                 })
 
-        # Add file if provided (using fileData with URL)
+        # Add file if provided (using file_data with URL)
         if file_url:
             mime_type = self._get_mime_type(file_url)
             parts.append({
-                "fileData": {
-                    "mimeType": mime_type,
-                    "fileUri": file_url
+                "file_data": {
+                    "mime_type": mime_type,
+                    "file_uri": file_url
                 }
             })
 
