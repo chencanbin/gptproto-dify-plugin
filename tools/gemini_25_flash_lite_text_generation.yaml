@@ -1,0 +1,37 @@
+identity:
+  name: gemini_25_flash_lite_text_generation
+  author: gptproto
+  label:
+    en_US: gemini-2.5-flash-lite / text-generation
+    zh_Hans: gemini-2.5-flash-lite / 文本生成
+description:
+  human:
+    en_US: Lightweight and fast AI assistant powered by Google Gemini 2.5 Flash Lite. Supports text generation and document analysis (PDF). Optimized for quick responses with lower latency.
+    zh_Hans: 由 Google Gemini 2.5 Flash Lite 驱动的轻量快速 AI 助手。支持文本生成和文档分析（PDF）。针对快速响应和低延迟进行了优化。
+  llm: Lightweight AI assistant using Google Gemini 2.5 Flash Lite model. Optimized for fast responses with lower latency. Supports text generation and document parsing (PDF). Ideal for quick tasks requiring speed over complexity.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: The text prompt or question for the model
+      zh_Hans: 模型的文本提示或问题
+    llm_description: The text prompt or question for the model to respond to.
+    form: llm
+  - name: file_url
+    type: string
+    required: false
+    label:
+      en_US: File URL
+      zh_Hans: 文件链接
+    human_description:
+      en_US: Optional file URL to analyze (supports PDF and other documents)
+      zh_Hans: 可选的文件链接用于分析（支持 PDF 等文档）
+    llm_description: Optional file URL to analyze along with the text prompt. Supports PDF and other document formats.
+    form: llm
+extra:
+  python:
+    source: tools/gemini_25_flash_lite_text_generation.py

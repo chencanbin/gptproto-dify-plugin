@@ -1,0 +1,65 @@
+identity:
+  name: seedream_image_edit
+  author: gptproto
+  label:
+    en_US: seedream-4.0 / image-edit
+    zh_Hans: seedream-4.0 / 图片编辑
+description:
+  human:
+    en_US: Edit and transform images using text prompts via ByteDance Seedream 4.0 model. Supports multiple input images and various output sizes up to 2048x2048. Chinese-optimized.
+    zh_Hans: 使用字节跳动 Seedream 4.0 模型通过文本提示编辑和转换图片。支持多张输入图片和多种输出尺寸，最高 2048x2048。针对中文优化。
+  llm: Edit and transform images using text prompts with ByteDance Seedream 4.0 model. Supports multiple input images for blending and various output sizes up to 2048x2048. Optimized for Chinese language prompts.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A detailed text description of how to edit the images
+      zh_Hans: 详细描述如何编辑图片
+    llm_description: A detailed text description of how to edit or transform the images. Be specific about what changes to make.
+    form: llm
+  - name: images
+    type: string
+    required: true
+    label:
+      en_US: Image URLs
+      zh_Hans: 图片链接
+    human_description:
+      en_US: One or more image URLs separated by commas
+      zh_Hans: 一个或多个图片链接，用逗号分隔
+    llm_description: One or more image URLs to edit, separated by commas. These images will be used as source for the edit operation.
+    form: llm
+  - name: size
+    type: select
+    required: false
+    default: "1024*1024"
+    label:
+      en_US: Size
+      zh_Hans: 尺寸
+    human_description:
+      en_US: The size of the generated image
+      zh_Hans: 生成图片的尺寸
+    options:
+      - value: "1024*1024"
+        label:
+          en_US: 1024*1024 (Square)
+          zh_Hans: 1024*1024 (正方形)
+      - value: "1536*1024"
+        label:
+          en_US: 1536*1024 (Landscape)
+          zh_Hans: 1536*1024 (横屏)
+      - value: "1024*1536"
+        label:
+          en_US: 1024*1536 (Portrait)
+          zh_Hans: 1024*1536 (竖屏)
+      - value: "2048*2048"
+        label:
+          en_US: 2048*2048 (Large Square)
+          zh_Hans: 2048*2048 (大正方形)
+    form: form
+extra:
+  python:
+    source: tools/seedream_image_edit.py

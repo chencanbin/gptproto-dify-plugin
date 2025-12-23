@@ -1,0 +1,54 @@
+identity:
+  name: seedream_text_to_image
+  author: gptproto
+  label:
+    en_US: seedream-4.0 / text-to-image
+    zh_Hans: seedream-4.0 / 文生图
+description:
+  human:
+    en_US: Generate images from text prompts using ByteDance Seedream 4.0 model. Supports multiple sizes including ultra-high resolution 2048x2048. Chinese-optimized with excellent text rendering.
+    zh_Hans: 使用字节跳动 Seedream 4.0 模型根据文本提示生成图片。支持多种尺寸包括超高分辨率 2048x2048。针对中文优化，文字渲染效果出色。
+  llm: Generate images from text prompts using ByteDance Seedream 4.0 model. Features multiple size options up to 2048x2048, optimized for Chinese language prompts with excellent text rendering in images.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A detailed text description of the image you want to generate
+      zh_Hans: 您想要生成的图片的详细文字描述
+    llm_description: A detailed text description of the image to generate. Be specific about subjects, style, colors, composition, and mood.
+    form: llm
+  - name: size
+    type: select
+    required: false
+    default: "1024*1024"
+    label:
+      en_US: Size
+      zh_Hans: 尺寸
+    human_description:
+      en_US: The size of the generated image
+      zh_Hans: 生成图片的尺寸
+    options:
+      - value: "1024*1024"
+        label:
+          en_US: 1024*1024 (Square)
+          zh_Hans: 1024*1024 (正方形)
+      - value: "1536*1024"
+        label:
+          en_US: 1536*1024 (Landscape)
+          zh_Hans: 1536*1024 (横屏)
+      - value: "1024*1536"
+        label:
+          en_US: 1024*1536 (Portrait)
+          zh_Hans: 1024*1536 (竖屏)
+      - value: "2048*2048"
+        label:
+          en_US: 2048*2048 (Large Square)
+          zh_Hans: 2048*2048 (大正方形)
+    form: form
+extra:
+  python:
+    source: tools/seedream_text_to_image.py

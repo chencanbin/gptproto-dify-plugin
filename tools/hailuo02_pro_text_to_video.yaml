@@ -1,0 +1,92 @@
+identity:
+  name: hailuo02_pro_text_to_video
+  author: gptproto
+  label:
+    en_US: hailuo-02-pro / text-to-video
+    zh_Hans: hailuo-02-pro / 文生视频
+description:
+  human:
+    en_US: Generate videos from text prompts using MiniMax Hailuo 02 Pro model. Supports 6/10 second durations, multiple resolutions (480P/768P/1080P), prompt expansion, and fast generation mode.
+    zh_Hans: 使用 MiniMax 海螺 02 Pro 模型根据文本提示生成视频。支持 6/10 秒时长、多种分辨率（480P/768P/1080P）、提示词扩展和快速生成模式。
+  llm: Generate videos from text prompts using MiniMax Hailuo 02 Pro model. Features customizable duration (6 or 10 seconds), multiple resolutions (480P, 768P, 1080P), automatic prompt expansion, and fast generation mode for efficient video creation.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A detailed text description of the video you want to generate
+      zh_Hans: 您想要生成的视频的详细文字描述
+    llm_description: A detailed text description of the video to generate. Describe the scene, action, characters, camera movement, and style.
+    form: llm
+  - name: duration
+    type: select
+    required: false
+    default: "6"
+    label:
+      en_US: Duration (seconds)
+      zh_Hans: 时长（秒）
+    human_description:
+      en_US: Video duration in seconds
+      zh_Hans: 视频时长，单位秒
+    options:
+      - value: "6"
+        label:
+          en_US: 6 seconds
+          zh_Hans: 6 秒
+      - value: "10"
+        label:
+          en_US: 10 seconds
+          zh_Hans: 10 秒
+    form: form
+  - name: resolution
+    type: select
+    required: false
+    default: "768P"
+    label:
+      en_US: Resolution
+      zh_Hans: 分辨率
+    human_description:
+      en_US: Video resolution
+      zh_Hans: 视频分辨率
+    options:
+      - value: "480P"
+        label:
+          en_US: 480P
+          zh_Hans: 480P
+      - value: "768P"
+        label:
+          en_US: 768P
+          zh_Hans: 768P
+      - value: "1080P"
+        label:
+          en_US: 1080P
+          zh_Hans: 1080P
+    form: form
+  - name: enable_prompt_expansion
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Enable Prompt Expansion
+      zh_Hans: 启用提示词扩展
+    human_description:
+      en_US: Automatically expand the prompt for better video quality
+      zh_Hans: 自动扩展提示词以获得更好的视频质量
+    form: form
+  - name: go_fast
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Fast Mode
+      zh_Hans: 快速模式
+    human_description:
+      en_US: Enable fast generation mode
+      zh_Hans: 启用快速生成模式
+    form: form
+extra:
+  python:
+    source: tools/hailuo02_pro_text_to_video.py

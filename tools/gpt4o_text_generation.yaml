@@ -1,14 +1,14 @@
 identity:
-  name: gpt52_pro_text_generation
+  name: gpt4o_text_generation
   author: gptproto
   label:
-    en_US: gpt-5.2-pro / multimodal
-    zh_Hans: gpt-5.2-pro / 多模态
+    en_US: gpt-4o / multimodal
+    zh_Hans: gpt-4o / 多模态
 description:
   human:
-    en_US: Premium multimodal AI assistant powered by OpenAI GPT-5.2 Pro. Enhanced capabilities for text generation, image analysis (jpg/png/webp/gif), document parsing (PDF), and real-time web search. Best for complex professional tasks.
-    zh_Hans: 由 OpenAI GPT-5.2 Pro 驱动的高级多模态 AI 助手。增强的文本生成、图片分析（jpg/png/webp/gif）、文档解析（PDF）以及实时网页搜索能力。最适合复杂的专业任务。
-  llm: Premium multimodal AI assistant using OpenAI GPT-5.2 Pro model with enhanced capabilities. Supports text generation, image analysis, document parsing, and web search. Optimized for complex professional tasks requiring advanced reasoning and accuracy.
+    en_US: Multimodal AI assistant powered by OpenAI GPT-4o. Supports text generation, image analysis (jpg/png/webp/gif), document parsing (PDF), and real-time web search. Balanced performance and cost efficiency.
+    zh_Hans: 由 OpenAI GPT-4o 驱动的多模态 AI 助手。支持文本生成、图片分析（jpg/png/webp/gif）、文档解析（PDF）以及实时网页搜索。兼顾性能与成本效率。
+  llm: Multimodal AI assistant using OpenAI GPT-4o model. Supports text generation, image analysis (jpg, png, webp, gif), document parsing (PDF), and optional web search. Offers excellent balance between capability and efficiency for diverse tasks.
 parameters:
   - name: prompt
     type: string
@@ -57,4 +57,4 @@ parameters:
     form: form
 extra:
   python:
-    source: tools/gpt52_pro_text_generation.py
+    source: tools/gpt4o_text_generation.py

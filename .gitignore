@@ -30,3 +30,7 @@ dist/
 # OS
 .DS_Store
 Thumbs.db
+.venv312/
+dist/
+__pycache__/
+*.pyc

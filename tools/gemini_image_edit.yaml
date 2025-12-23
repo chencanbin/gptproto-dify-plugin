@@ -3,12 +3,12 @@ identity:
   author: gptproto
   label:
     en_US: gemini-3-pro-image-preview / image-edit
-    zh_Hans: gemini-3-pro-image-preview / image-edit
+    zh_Hans: gemini-3-pro-image-preview / 图片编辑
 description:
   human:
-    en_US: Edit images using text prompts and reference images via Google Gemini model.
-    zh_Hans: 使用文本提示和参考图片通过 Google Gemini 模型编辑图片。
-  llm: Edit or blend images using text prompts and reference images. Can combine features from multiple images or modify existing images based on text descriptions.
+    en_US: Edit and blend images using text prompts via Google Gemini 3 Pro Image Preview model. Supports multiple input images for blending, customizable output resolution (1K/2K), and PNG/JPEG output formats.
+    zh_Hans: 使用 Google Gemini 3 Pro Image Preview 模型通过文本提示编辑和混合图片。支持多张输入图片混合、可调节输出分辨率（1K/2K）以及 PNG/JPEG 输出格式。
+  llm: Edit or blend multiple images using text prompts with Google Gemini 3 Pro Image Preview model. Can combine features from multiple images, apply style transfers, or modify existing images based on detailed text descriptions. Supports multiple input images separated by commas.
 parameters:
   - name: prompt
     type: string

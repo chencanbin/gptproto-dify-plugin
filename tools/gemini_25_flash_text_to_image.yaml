@@ -1,14 +1,14 @@
 identity:
-  name: gemini_text_to_image
+  name: gemini_25_flash_text_to_image
   author: gptproto
   label:
-    en_US: gemini-3-pro-image-preview / text-to-image
-    zh_Hans: gemini-3-pro-image-preview / 文生图
+    en_US: gemini-2.5-flash-image-hd / text-to-image
+    zh_Hans: gemini-2.5-flash-image-hd / 文生图
 description:
   human:
-    en_US: Generate high-quality images from text prompts using Google Gemini 3 Pro Image Preview model. Supports multiple resolutions (1K/2K), various aspect ratios (1:1, 16:9, 9:16, 4:3, 3:4), and PNG/JPEG output formats.
-    zh_Hans: 使用 Google Gemini 3 Pro Image Preview 模型根据文本提示生成高质量图片。支持多种分辨率（1K/2K）、多种宽高比（1:1、16:9、9:16、4:3、3:4）以及 PNG/JPEG 输出格式。
-  llm: Generate high-quality images from text prompts using Google Gemini 3 Pro Image Preview model. Supports customizable resolution, aspect ratio, and output format. Ideal for creating artwork, illustrations, and visual content from detailed text descriptions.
+    en_US: Generate HD images from text prompts using Google Gemini 2.5 Flash Image HD model. Fast generation with high quality output. Supports multiple aspect ratios (1:1, 16:9, 9:16, 4:3, 3:4) and PNG/JPEG formats.
+    zh_Hans: 使用 Google Gemini 2.5 Flash Image HD 模型根据文本提示生成高清图片。快速生成高质量输出。支持多种宽高比（1:1、16:9、9:16、4:3、3:4）以及 PNG/JPEG 格式。
+  llm: Generate HD images from text prompts using Google Gemini 2.5 Flash Image HD model. Offers fast generation speed with high quality results. Supports various aspect ratios and output formats for flexible image creation.
 parameters:
   - name: prompt
     type: string
@@ -21,26 +21,6 @@ parameters:
       zh_Hans: 您想要生成的图片的详细文字描述
     llm_description: A detailed text description of the image to generate. Be specific about subjects, style, colors, composition, and mood.
     form: llm
-  - name: size
-    type: select
-    required: false
-    default: "1K"
-    label:
-      en_US: Size
-      zh_Hans: 尺寸
-    human_description:
-      en_US: The resolution of the generated image
-      zh_Hans: 生成图片的分辨率
-    options:
-      - value: "1K"
-        label:
-          en_US: 1K (1024px)
-          zh_Hans: 1K (1024px)
-      - value: "2K"
-        label:
-          en_US: 2K (2048px)
-          zh_Hans: 2K (2048px)
-    form: form
   - name: aspect_ratio
     type: select
     required: false
@@ -95,4 +75,4 @@ parameters:
     form: form
 extra:
   python:
-    source: tools/gemini_text_to_image.py
+    source: tools/gemini_25_flash_text_to_image.py

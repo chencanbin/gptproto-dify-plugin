@@ -1,0 +1,60 @@
+identity:
+  name: claude_sonnet_45_text_generation
+  author: gptproto
+  label:
+    en_US: claude-sonnet-4.5 / multimodal
+    zh_Hans: claude-sonnet-4.5 / 多模态
+description:
+  human:
+    en_US: Advanced AI assistant powered by Anthropic Claude Sonnet 4.5. Supports text generation, document analysis (PDF), and real-time web search. Excellent balance of intelligence and speed.
+    zh_Hans: 由 Anthropic Claude Sonnet 4.5 驱动的高级 AI 助手。支持文本生成、文档分析（PDF）以及实时网页搜索。智能与速度的完美平衡。
+  llm: Advanced AI assistant using Anthropic Claude Sonnet 4.5 model. Supports text generation, document analysis (PDF), and optional web search. Offers excellent balance between reasoning capability and response speed for diverse professional tasks.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: The text prompt or question for the model
+      zh_Hans: 模型的文本提示或问题
+    llm_description: The text prompt or question for the model to respond to.
+    form: llm
+  - name: document_url
+    type: string
+    required: false
+    label:
+      en_US: Document URL
+      zh_Hans: 文档链接
+    human_description:
+      en_US: Optional document URL to analyze (supports PDF and other documents)
+      zh_Hans: 可选的文档链接用于分析（支持 PDF 等文档）
+    llm_description: Optional document URL to analyze along with the text prompt. Supports PDF and other document formats.
+    form: llm
+  - name: enable_web_search
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Enable Web Search
+      zh_Hans: 启用网页搜索
+    human_description:
+      en_US: Enable real-time web search for up-to-date information
+      zh_Hans: 启用实时网页搜索以获取最新信息
+    llm_description: Enable real-time web search to get up-to-date information from the internet.
+    form: form
+  - name: max_tokens
+    type: number
+    required: false
+    default: 4096
+    label:
+      en_US: Max Tokens
+      zh_Hans: 最大Token数
+    human_description:
+      en_US: Maximum number of tokens in the response
+      zh_Hans: 响应中的最大Token数
+    form: form
+extra:
+  python:
+    source: tools/claude_sonnet_45_text_generation.py

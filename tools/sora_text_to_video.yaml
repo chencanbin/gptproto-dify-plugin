@@ -3,12 +3,12 @@ identity:
   author: gptproto
   label:
     en_US: sora-2 / text-to-video
-    zh_Hans: sora-2 / text-to-video
+    zh_Hans: sora-2 / 文生视频
 description:
   human:
-    en_US: Generate videos from text prompts using OpenAI Sora 2 model via GPTProto API.
-    zh_Hans: 使用 OpenAI Sora 2 模型通过 GPTProto API 根据文本生成视频。
-  llm: Generate videos from text prompts using OpenAI Sora 2 model. This tool creates high-quality videos based on detailed text descriptions.
+    en_US: Generate cinematic videos from text prompts using OpenAI Sora 2 model. Supports multiple durations (5/10/20s), orientations (landscape/portrait/square), and resolutions (480p/720p/1080p). Optional character motion reference.
+    zh_Hans: 使用 OpenAI Sora 2 模型根据文本提示生成电影级视频。支持多种时长（5/10/20秒）、方向（横屏/竖屏/正方形）和分辨率（480p/720p/1080p）。可选角色动作参考。
+  llm: Generate cinematic videos from text prompts using OpenAI Sora 2 model. Features customizable duration (5, 10, or 20 seconds), orientation (landscape, portrait, square), and resolution (480p, 720p, 1080p). Supports character motion reference for consistent animation.
 parameters:
   - name: prompt
     type: string

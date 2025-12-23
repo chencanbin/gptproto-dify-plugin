@@ -2,13 +2,13 @@ identity:
   name: gemini_25_pro_text_generation
   author: gptproto
   label:
-    en_US: gemini-2.5-pro / text-to-text
-    zh_Hans: gemini-2.5-pro / text-to-text
+    en_US: gemini-2.5-pro / multimodal
+    zh_Hans: gemini-2.5-pro / 多模态
 description:
   human:
-    en_US: Generate text, analyze images, and analyze files using Google Gemini 2.5 Pro model via GPTProto API.
-    zh_Hans: 使用 Google Gemini 2.5 Pro 模型通过 GPTProto API 生成文本、分析图片和分析文件。
-  llm: Generate text responses, analyze images, and analyze files using Google Gemini 2.5 Pro model. This tool can answer questions, write content, analyze images, and parse documents like PDFs.
+    en_US: Multimodal AI assistant powered by Google Gemini 2.5 Pro. Supports text generation, image analysis (jpg/png/webp/gif), and document parsing (PDF). Features extended context window and enhanced reasoning capabilities.
+    zh_Hans: 由 Google Gemini 2.5 Pro 驱动的多模态 AI 助手。支持文本生成、图片分析（jpg/png/webp/gif）和文档解析（PDF）。具有扩展上下文窗口和增强推理能力。
+  llm: Multimodal AI assistant using Google Gemini 2.5 Pro model with enhanced reasoning capabilities. Supports text generation, image analysis (jpg, png, webp, gif), and document parsing (PDF). Ideal for complex reasoning tasks, code generation, and detailed content analysis.
 parameters:
   - name: prompt
     type: string

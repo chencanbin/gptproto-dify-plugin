@@ -1,0 +1,53 @@
+identity:
+  name: hailuo23_standard_image_to_video
+  author: gptproto
+  label:
+    en_US: hailuo-2.3-standard / image-to-video
+    zh_Hans: hailuo-2.3-standard / 图生视频
+description:
+  human:
+    en_US: Animate images into videos using MiniMax Hailuo 2.3 Standard model. Cost-effective option with 6-second video generation from any input image.
+    zh_Hans: 使用 MiniMax 海螺 2.3 Standard 模型将图片转换为视频。性价比高的选择，支持从任意输入图片生成 6 秒视频。
+  llm: Animate images into videos using MiniMax Hailuo 2.3 Standard model. Cost-effective option for image-to-video generation with 6-second duration. Describe camera movements, character actions, and scene changes.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A text description of the motion or action to apply to the image
+      zh_Hans: 描述图片中要发生的动作或运动
+    llm_description: A text description of the motion or action to apply to the image. Describe camera movement, character actions, and scene changes.
+    form: llm
+  - name: image
+    type: string
+    required: true
+    label:
+      en_US: Image URL
+      zh_Hans: 图片链接
+    human_description:
+      en_US: The URL of the image to animate
+      zh_Hans: 要制作成视频的图片链接
+    llm_description: The URL of the image to use as the starting frame for the video.
+    form: llm
+  - name: duration
+    type: select
+    required: false
+    default: "6"
+    label:
+      en_US: Duration (seconds)
+      zh_Hans: 时长（秒）
+    human_description:
+      en_US: Video duration in seconds
+      zh_Hans: 视频时长，单位秒
+    options:
+      - value: "6"
+        label:
+          en_US: 6 seconds
+          zh_Hans: 6 秒
+    form: form
+extra:
+  python:
+    source: tools/hailuo23_standard_image_to_video.py

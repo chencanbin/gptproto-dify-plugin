@@ -1,0 +1,46 @@
+identity:
+  name: nano_banana_image_edit
+  author: gptproto
+  label:
+    en_US: nano-banana / image-edit
+    zh_Hans: nano-banana / 图片编辑
+description:
+  human:
+    en_US: Edit and blend images using Google Nano Banana model. Supports multiple input images for blending without requiring a text prompt. PNG/JPEG output formats available.
+    zh_Hans: 使用 Google Nano Banana 模型编辑和混合图片。支持多张输入图片混合，无需文本提示词。支持 PNG/JPEG 输出格式。
+  llm: Edit and blend multiple images using Google Nano Banana model. Unique feature - does not require a text prompt, simply provide images to blend. Supports PNG and JPEG output formats.
+parameters:
+  - name: images
+    type: string
+    required: true
+    label:
+      en_US: Image URLs
+      zh_Hans: 图片链接
+    human_description:
+      en_US: One or more image URLs separated by commas
+      zh_Hans: 一个或多个图片链接，用逗号分隔
+    llm_description: One or more image URLs to edit or blend, separated by commas. These images will be used as source for the edit operation.
+    form: llm
+  - name: output_format
+    type: select
+    required: false
+    default: "png"
+    label:
+      en_US: Output Format
+      zh_Hans: 输出格式
+    human_description:
+      en_US: The format of the generated image
+      zh_Hans: 生成图片的格式
+    options:
+      - value: "png"
+        label:
+          en_US: PNG
+          zh_Hans: PNG
+      - value: "jpeg"
+        label:
+          en_US: JPEG
+          zh_Hans: JPEG
+    form: form
+extra:
+  python:
+    source: tools/nano_banana_image_edit.py

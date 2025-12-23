@@ -6,9 +6,9 @@ identity:
     zh_Hans: gpt-image-1 / 图片编辑
 description:
   human:
-    en_US: Edit images using text prompts and reference images via OpenAI GPT-Image-1 model.
-    zh_Hans: 使用文本提示和参考图片通过 OpenAI GPT-Image-1 模型编辑图片。
-  llm: Edit or blend images using text prompts and reference images. Can combine features from multiple images or modify existing images based on text descriptions.
+    en_US: Edit and blend images using text prompts via OpenAI GPT-Image-1 model. Supports multiple input images, quality levels (low/medium/high), various sizes, and transparent/opaque background options.
+    zh_Hans: 使用 OpenAI GPT-Image-1 模型通过文本提示编辑和混合图片。支持多张输入图片、质量等级（低/中/高）、多种尺寸以及透明/不透明背景选项。
+  llm: Edit or blend multiple images using text prompts with OpenAI GPT-Image-1 model. Supports combining features from multiple images, style transfers, and modifications. Features quality control, size options, and background transparency settings.
 parameters:
   - name: prompt
     type: string

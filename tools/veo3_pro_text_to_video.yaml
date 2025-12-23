@@ -1,0 +1,61 @@
+identity:
+  name: veo3_pro_text_to_video
+  author: gptproto
+  label:
+    en_US: veo-3-pro / text-to-video
+    zh_Hans: veo-3-pro / 文生视频
+description:
+  human:
+    en_US: Generate premium cinematic videos from text prompts using Google Veo 3 Pro model. Enhanced quality with multiple aspect ratios (16:9, 9:16, 1:1) and automatic prompt enhancement.
+    zh_Hans: 使用 Google Veo 3 Pro 模型根据文本提示生成高质量电影级视频。增强质量，支持多种宽高比（16:9、9:16、1:1）以及自动提示词增强。
+  llm: Generate premium cinematic videos from text prompts using Google Veo 3 Pro model with enhanced quality. Features customizable aspect ratios and optional prompt enhancement for professional-grade video creation.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A detailed text description of the video you want to generate
+      zh_Hans: 您想要生成的视频的详细文字描述
+    llm_description: A detailed text description of the video to generate. Describe the scene, action, characters, camera movement, and style.
+    form: llm
+  - name: aspect_ratio
+    type: select
+    required: false
+    default: "16:9"
+    label:
+      en_US: Aspect Ratio
+      zh_Hans: 宽高比
+    human_description:
+      en_US: The aspect ratio of the generated video
+      zh_Hans: 生成视频的宽高比
+    options:
+      - value: "16:9"
+        label:
+          en_US: 16:9 (Landscape)
+          zh_Hans: 16:9 (横屏)
+      - value: "9:16"
+        label:
+          en_US: 9:16 (Portrait)
+          zh_Hans: 9:16 (竖屏)
+      - value: "1:1"
+        label:
+          en_US: 1:1 (Square)
+          zh_Hans: 1:1 (正方形)
+    form: form
+  - name: enhance_prompt
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Enhance Prompt
+      zh_Hans: 增强提示词
+    human_description:
+      en_US: Automatically enhance the prompt for better video quality
+      zh_Hans: 自动增强提示词以获得更好的视频质量
+    form: form
+extra:
+  python:
+    source: tools/veo3_pro_text_to_video.py

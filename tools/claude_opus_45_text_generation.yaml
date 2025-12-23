@@ -1,14 +1,14 @@
 identity:
-  name: gpt52_text_generation
+  name: claude_opus_45_text_generation
   author: gptproto
   label:
-    en_US: gpt-5.2 / multimodal
-    zh_Hans: gpt-5.2 / 多模态
+    en_US: claude-opus-4.5 / multimodal
+    zh_Hans: claude-opus-4.5 / 多模态
 description:
   human:
-    en_US: Advanced multimodal AI assistant powered by OpenAI GPT-5.2. Supports text generation, image analysis (jpg/png/webp/gif), document parsing (PDF), and real-time web search for up-to-date information.
-    zh_Hans: 由 OpenAI GPT-5.2 驱动的高级多模态 AI 助手。支持文本生成、图片分析（jpg/png/webp/gif）、文档解析（PDF）以及实时网页搜索获取最新信息。
-  llm: Advanced multimodal AI assistant using OpenAI GPT-5.2 model. Capabilities include text generation, image analysis (jpg, png, webp, gif), document parsing (PDF), and optional real-time web search. Ideal for complex reasoning, content creation, and research tasks.
+    en_US: Premium AI assistant powered by Anthropic Claude Opus 4.5, the most capable Claude model. Supports text generation, document analysis (PDF), and real-time web search. Best for complex reasoning tasks.
+    zh_Hans: 由 Anthropic Claude Opus 4.5（最强大的 Claude 模型）驱动的高级 AI 助手。支持文本生成、文档分析（PDF）以及实时网页搜索。最适合复杂推理任务。
+  llm: Premium AI assistant using Anthropic Claude Opus 4.5, the most capable Claude model. Supports text generation, document analysis (PDF), and optional web search. Optimized for complex reasoning, nuanced analysis, and high-quality content creation.
 parameters:
   - name: prompt
     type: string
@@ -20,17 +20,6 @@ parameters:
       en_US: The text prompt or question for the model
       zh_Hans: 模型的文本提示或问题
     llm_description: The text prompt or question for the model to respond to.
-    form: llm
-  - name: image_url
-    type: string
-    required: false
-    label:
-      en_US: Image URL
-      zh_Hans: 图片链接
-    human_description:
-      en_US: Optional image URL to analyze (supports jpg, png, webp, gif)
-      zh_Hans: 可选的图片链接用于分析（支持 jpg、png、webp、gif）
-    llm_description: Optional image URL to analyze along with the text prompt.
     form: llm
   - name: file_url
     type: string
@@ -55,6 +44,17 @@ parameters:
       zh_Hans: 启用实时网页搜索以获取最新信息
     llm_description: Enable real-time web search to get up-to-date information from the internet.
     form: form
+  - name: max_tokens
+    type: number
+    required: false
+    default: 4096
+    label:
+      en_US: Max Tokens
+      zh_Hans: 最大Token数
+    human_description:
+      en_US: Maximum number of tokens in the response
+      zh_Hans: 响应中的最大Token数
+    form: form
 extra:
   python:
-    source: tools/gpt52_text_generation.py
+    source: tools/claude_opus_45_text_generation.py

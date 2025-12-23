@@ -1,0 +1,53 @@
+identity:
+  name: hailuo23_standard_text_to_video
+  author: gptproto
+  label:
+    en_US: hailuo-2.3-standard / text-to-video
+    zh_Hans: hailuo-2.3-standard / 文生视频
+description:
+  human:
+    en_US: Generate videos from text prompts using MiniMax Hailuo 2.3 Standard model. Cost-effective option with 6-second video generation and automatic prompt expansion.
+    zh_Hans: 使用 MiniMax 海螺 2.3 Standard 模型根据文本提示生成视频。性价比高的选择，支持 6 秒视频生成和自动提示词扩展。
+  llm: Generate videos from text prompts using MiniMax Hailuo 2.3 Standard model. Cost-effective option for video generation with 6-second duration and optional prompt expansion for enhanced quality.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A detailed text description of the video you want to generate
+      zh_Hans: 您想要生成的视频的详细文字描述
+    llm_description: A detailed text description of the video to generate. Describe the scene, action, characters, camera movement, and style.
+    form: llm
+  - name: duration
+    type: select
+    required: false
+    default: "6"
+    label:
+      en_US: Duration (seconds)
+      zh_Hans: 时长（秒）
+    human_description:
+      en_US: Video duration in seconds
+      zh_Hans: 视频时长，单位秒
+    options:
+      - value: "6"
+        label:
+          en_US: 6 seconds
+          zh_Hans: 6 秒
+    form: form
+  - name: enable_prompt_expansion
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Enable Prompt Expansion
+      zh_Hans: 启用提示词扩展
+    human_description:
+      en_US: Automatically expand the prompt for better video quality
+      zh_Hans: 自动扩展提示词以获得更好的视频质量
+    form: form
+extra:
+  python:
+    source: tools/hailuo23_standard_text_to_video.py

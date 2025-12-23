@@ -35,6 +35,26 @@ tools:
   - tools/gpt_image_edit.yaml
   - tools/gpt52_text_generation.yaml
   - tools/gpt52_pro_text_generation.yaml
+  - tools/veo31_text_to_video.yaml
+  - tools/veo31_image_to_video.yaml
+  - tools/veo3_pro_text_to_video.yaml
+  - tools/veo3_pro_image_to_video.yaml
+  - tools/gemini_25_flash_text_to_image.yaml
+  - tools/claude_sonnet_45_text_generation.yaml
+  - tools/gpt4o_text_generation.yaml
+  - tools/seedream_text_to_image.yaml
+  - tools/seedream_image_edit.yaml
+  - tools/seedream45_text_to_image.yaml
+  - tools/seedream45_image_edit.yaml
+  - tools/gemini_25_flash_lite_text_generation.yaml
+  - tools/nano_banana_text_to_image.yaml
+  - tools/nano_banana_image_edit.yaml
+  - tools/claude_opus_45_text_generation.yaml
+  - tools/hailuo02_pro_text_to_video.yaml
+  - tools/hailuo02_pro_image_to_video.yaml
+  - tools/hailuo23_standard_text_to_video.yaml
+  - tools/hailuo23_standard_image_to_video.yaml
+  - tools/hailuo23_fast_image_to_video.yaml
 extra:
   python:
     source: provider/gptproto_tools.py

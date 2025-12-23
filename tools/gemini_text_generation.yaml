@@ -2,13 +2,13 @@ identity:
   name: gemini_text_generation
   author: gptproto
   label:
-    en_US: gemini-3-pro-preview / text-to-text
-    zh_Hans: gemini-3-pro-preview / text-to-text
+    en_US: gemini-3-pro-preview / multimodal
+    zh_Hans: gemini-3-pro-preview / 多模态
 description:
   human:
-    en_US: Generate text, analyze images, and analyze files using Google Gemini 3 Pro model via GPTProto API.
-    zh_Hans: 使用 Google Gemini 3 Pro 模型通过 GPTProto API 生成文本、分析图片和分析文件。
-  llm: Generate text responses, analyze images, and analyze files using Google Gemini 3 Pro model. This tool can answer questions, write content, analyze images, and parse documents like PDFs.
+    en_US: Multimodal AI assistant powered by Google Gemini 3 Pro. Supports text generation, image analysis (jpg/png/webp/gif), and document parsing (PDF). Adjustable temperature and max tokens for customized responses.
+    zh_Hans: 由 Google Gemini 3 Pro 驱动的多模态 AI 助手。支持文本生成、图片分析（jpg/png/webp/gif）和文档解析（PDF）。可调节温度和最大 Token 数以定制响应。
+  llm: Multimodal AI assistant using Google Gemini 3 Pro model. Capabilities include text generation, image analysis (supports jpg, png, webp, gif), and document parsing (PDF and other formats). Use for question answering, content creation, visual analysis, and document understanding.
 parameters:
   - name: prompt
     type: string

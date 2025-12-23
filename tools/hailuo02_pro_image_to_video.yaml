@@ -1,0 +1,114 @@
+identity:
+  name: hailuo02_pro_image_to_video
+  author: gptproto
+  label:
+    en_US: hailuo-02-pro / image-to-video
+    zh_Hans: hailuo-02-pro / 图生视频
+description:
+  human:
+    en_US: Animate images into videos using MiniMax Hailuo 02 Pro model. Supports start/end frame control, 6/10 second durations, multiple resolutions (480P/768P/1080P), and fast generation mode.
+    zh_Hans: 使用 MiniMax 海螺 02 Pro 模型将图片转换为视频。支持首尾帧控制、6/10 秒时长、多种分辨率（480P/768P/1080P）和快速生成模式。
+  llm: Animate images into videos using MiniMax Hailuo 02 Pro model. Unique feature - supports both start and end frame control for precise video transitions. Features customizable duration, multiple resolutions, prompt expansion, and fast mode.
+parameters:
+  - name: prompt
+    type: string
+    required: true
+    label:
+      en_US: Prompt
+      zh_Hans: 提示词
+    human_description:
+      en_US: A text description of the motion or action to apply to the image
+      zh_Hans: 描述图片中要发生的动作或运动
+    llm_description: A text description of the motion or action to apply to the image. Describe camera movement, character actions, and scene changes.
+    form: llm
+  - name: image
+    type: string
+    required: true
+    label:
+      en_US: Start Image URL
+      zh_Hans: 起始图片链接
+    human_description:
+      en_US: The URL of the image to use as the starting frame
+      zh_Hans: 作为起始帧的图片链接
+    llm_description: The URL of the image to use as the starting frame for the video.
+    form: llm
+  - name: end_image
+    type: string
+    required: false
+    label:
+      en_US: End Image URL
+      zh_Hans: 结束图片链接
+    human_description:
+      en_US: Optional URL of the image to use as the ending frame
+      zh_Hans: 可选的作为结束帧的图片链接
+    llm_description: Optional URL of the image to use as the ending frame. The video will transition from start image to end image.
+    form: llm
+  - name: duration
+    type: select
+    required: false
+    default: "6"
+    label:
+      en_US: Duration (seconds)
+      zh_Hans: 时长（秒）
+    human_description:
+      en_US: Video duration in seconds
+      zh_Hans: 视频时长，单位秒
+    options:
+      - value: "6"
+        label:
+          en_US: 6 seconds
+          zh_Hans: 6 秒
+      - value: "10"
+        label:
+          en_US: 10 seconds
+          zh_Hans: 10 秒
+    form: form
+  - name: resolution
+    type: select
+    required: false
+    default: "768P"
+    label:
+      en_US: Resolution
+      zh_Hans: 分辨率
+    human_description:
+      en_US: Video resolution
+      zh_Hans: 视频分辨率
+    options:
+      - value: "480P"
+        label:
+          en_US: 480P
+          zh_Hans: 480P
+      - value: "768P"
+        label:
+          en_US: 768P
+          zh_Hans: 768P
+      - value: "1080P"
+        label:
+          en_US: 1080P
+          zh_Hans: 1080P
+    form: form
+  - name: enable_prompt_expansion
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Enable Prompt Expansion
+      zh_Hans: 启用提示词扩展
+    human_description:
+      en_US: Automatically expand the prompt for better video quality
+      zh_Hans: 自动扩展提示词以获得更好的视频质量
+    form: form
+  - name: go_fast
+    type: boolean
+    required: false
+    default: true
+    label:
+      en_US: Fast Mode
+      zh_Hans: 快速模式
+    human_description:
+      en_US: Enable fast generation mode
+      zh_Hans: 启用快速生成模式
+    form: form
+extra:
+  python:
+    source: tools/hailuo02_pro_image_to_video.py
