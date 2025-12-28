@@ -1,4 +1,4 @@
-version: 0.0.51
+version: 0.0.52
 type: plugin
 author: "gptproto"
 name: "gptproto_tools"
@@ -24,7 +24,7 @@ plugins:
   tools:
     - "provider/gptproto_tools.yaml"
 meta:
-  version: 0.0.51
+  version: 0.0.52
   arch:
     - "amd64"
     - "arm64"
