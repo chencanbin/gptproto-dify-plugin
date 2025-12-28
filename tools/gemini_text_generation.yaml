@@ -6,9 +6,9 @@ identity:
     zh_Hans: gemini-3-pro-preview / 多模态
 description:
   human:
-    en_US: Multimodal AI assistant powered by Google Gemini 3 Pro. Supports text generation, image analysis (jpg/png/webp/gif), and document parsing (PDF). Adjustable temperature and max tokens for customized responses.
-    zh_Hans: 由 Google Gemini 3 Pro 驱动的多模态 AI 助手。支持文本生成、图片分析（jpg/png/webp/gif）和文档解析（PDF）。可调节温度和最大 Token 数以定制响应。
-  llm: Multimodal AI assistant using Google Gemini 3 Pro model. Capabilities include text generation, image analysis (supports jpg, png, webp, gif), and document parsing (PDF and other formats). Use for question answering, content creation, visual analysis, and document understanding.
+    en_US: Multimodal AI assistant powered by Google Gemini 3 Pro. Supports text generation, image analysis (jpg/png/webp/gif), video analysis (mp4/webm/mov/avi/mkv), and document parsing (PDF). Adjustable temperature and max tokens for customized responses.
+    zh_Hans: 由 Google Gemini 3 Pro 驱动的多模态 AI 助手。支持文本生成、图片分析（jpg/png/webp/gif）、视频分析（mp4/webm/mov/avi/mkv）和文档解析（PDF）。可调节温度和最大 Token 数以定制响应。
+  llm: Multimodal AI assistant using Google Gemini 3 Pro model. Capabilities include text generation, image analysis (supports jpg, png, webp, gif), video analysis (supports mp4, webm, mov, avi, mkv), and document parsing (PDF and other formats). Use for question answering, content creation, visual analysis, video understanding, and document understanding.
 parameters:
   - name: prompt
     type: string
@@ -42,6 +42,17 @@ parameters:
       en_US: Optional file URL to analyze (supports PDF and other documents)
       zh_Hans: 可选的文件链接用于分析（支持 PDF 等文档）
     llm_description: Optional file URL to analyze along with the text prompt. Supports PDF and other document formats.
+    form: llm
+  - name: video_url
+    type: string
+    required: false
+    label:
+      en_US: Video URL
+      zh_Hans: 视频链接
+    human_description:
+      en_US: Optional video URL to analyze (supports mp4, webm, mov, avi, mkv)
+      zh_Hans: 可选的视频链接用于分析（支持 mp4、webm、mov、avi、mkv）
+    llm_description: Optional video URL to analyze along with the text prompt. Supports mp4, webm, mov, avi, mkv formats.
     form: llm
   - name: temperature
     type: number

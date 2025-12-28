@@ -12,7 +12,7 @@ API_BASE = "https://gptproto.com/v1beta"
 
 class GeminiTextGenerationTool(Tool):
     """
-    Tool for generating text, analyzing images, and analyzing files
+    Tool for generating text, analyzing images, videos, and files
     using Google Gemini 3 Pro model via GPTProto API.
     """
 
@@ -34,6 +34,7 @@ class GeminiTextGenerationTool(Tool):
 
         image_url = tool_parameters.get("image_url", "")
         file_url = tool_parameters.get("file_url", "")
+        video_url = tool_parameters.get("video_url", "")
         temperature = tool_parameters.get("temperature", 0.7)
         max_tokens = tool_parameters.get("max_tokens", 4096)
 
@@ -44,6 +45,7 @@ class GeminiTextGenerationTool(Tool):
                 prompt=prompt,
                 image_url=image_url,
                 file_url=file_url,
+                video_url=video_url,
                 temperature=temperature,
                 max_tokens=max_tokens,
             )
@@ -61,12 +63,25 @@ class GeminiTextGenerationTool(Tool):
         Determine MIME type from URL extension.
         """
         url_lower = url.lower()
+        # Image types
         if url_lower.endswith(".png"):
             return "image/png"
         elif url_lower.endswith(".gif"):
             return "image/gif"
         elif url_lower.endswith(".webp"):
             return "image/webp"
+        # Video types
+        elif url_lower.endswith(".mp4"):
+            return "video/mp4"
+        elif url_lower.endswith(".webm"):
+            return "video/webm"
+        elif url_lower.endswith(".mov"):
+            return "video/quicktime"
+        elif url_lower.endswith(".avi"):
+            return "video/x-msvideo"
+        elif url_lower.endswith(".mkv"):
+            return "video/x-matroska"
+        # Document types
         elif url_lower.endswith(".pdf"):
             return "application/pdf"
         elif url_lower.endswith(".doc"):
@@ -96,6 +111,7 @@ class GeminiTextGenerationTool(Tool):
         prompt: str,
         image_url: str,
         file_url: str,
+        video_url: str,
         temperature: float,
         max_tokens: int,
     ) -> str | None:
@@ -130,6 +146,16 @@ class GeminiTextGenerationTool(Tool):
                 "fileData": {
                     "mimeType": mime_type,
                     "fileUri": file_url
+                }
+            })
+
+        # Add video if provided (using fileData with URL)
+        if video_url:
+            mime_type = self._get_mime_type(video_url)
+            parts.append({
+                "fileData": {
+                    "mimeType": mime_type,
+                    "fileUri": video_url
                 }
             })
 
