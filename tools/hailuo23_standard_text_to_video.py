@@ -53,7 +53,7 @@ class Hailuo23StandardTextToVideoTool(Tool):
             video_url = self._poll_result(api_key=api_key, result_id=result_id)
 
             if video_url:
-                yield self.create_link_message(video_url)
+                yield self.create_json_message({"files": [{"url": video_url, "type": "video/mp4"}]})
                 yield self.create_text_message(f"Video generated successfully!\n{video_url}")
             else:
                 yield self.create_text_message("Error: Failed to get video result after timeout")
